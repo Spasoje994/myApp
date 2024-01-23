@@ -1,0 +1,59 @@
+<h1 *ngIf="!employeeId">Create Employee</h1>
+<h1 *ngIf="employeeId">Update Employee</h1>
+<div class="employee-container">
+  <form [formGroup]="employeeForm">
+    <div class="form-row" *ngIf="employeeId">
+      <label for="workerId">Id</label>
+      <input id="workerId" type="text" formControlName="id" />
+    </div>
+    <div class="form-row">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" />
+    </div>
+    <div class="form-row">
+      <label for="surname">Surname</label>
+      <input id="surname" type="text" formControlName="surname" />
+    </div>
+
+    <div class="form-row drop">
+      <label for="office">Office</label>
+      <select name="office" id="office" formControlName="office">
+        <option value="default">--Select office--</option>
+        <option *ngFor="let office of employeeOffices" [value]="office.id">
+          {{ office.name }}
+        </option>
+      </select>
+    </div>
+
+    <div formArrayName="phone" class="array">
+      <div class="btn-container">
+        <button [disabled]="isDetails" class="add-phone" (click)="addPhone()">
+          Add Phone
+        </button>
+      </div>
+      <div
+        class="form-phone"
+        *ngFor="let phone of phoneControls; let i = index"
+      >
+        <label for="phone">Phone {{ i + 1 }}</label>
+        <input class="phone" id="phone" type="text" [formControlName]="i" />
+        <button class="btn-delete" type="button" (click)="removePhone(i)">
+          Delete
+        </button>
+      </div>
+    </div>
+
+    <p class="success" *ngIf="success">Success!</p>
+    <div class="btn-container">
+      <button class="add-phone" (click)="goBack()">Back</button>
+      <button
+        *ngIf="!isDetails"
+        [disabled]="!employeeForm.valid"
+        class="btn-create"
+        (click)="onSubmit(employeeForm.value)"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

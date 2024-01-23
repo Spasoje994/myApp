@@ -1,0 +1,44 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "name": "John",
+      "surname": "Smith",
+      "office": {
+        "name": "Beograd",
+        "id": 1
+      },
+      "phones": [
+        1234,
+        5678
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Nick",
+      "surname": "Miller",
+      "office": {
+        "name": "Italy",
+        "id": 3
+      },
+      "phones": [
+        12314,
+        5628
+      ]
+    }
+  ],
+  "offices": [
+    {
+      "name": "Beograd",
+      "id": "1"
+    },
+    {
+      "name": "London",
+      "id": "2"
+    },
+    {
+      "name": "Italy",
+      "id": "3"
+    }
+  ]
+}

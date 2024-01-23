@@ -1,0 +1,28 @@
+<h1 class="title">Employee List</h1>
+
+<div class="crea-btn">
+  <button class="btn-create" (click)="navigateToCreate()">
+    Create Employee
+  </button>
+</div>
+
+<div class="employees">
+  <div class="header">
+    <li>Name</li>
+    <li>Surname</li>
+    <li>Office</li>
+    <li>Actions</li>
+  </div>
+  <ul class="employee" *ngFor="let item of employees">
+    <li>{{ item?.name }}</li>
+    <li>{{ item?.surname }}</li>
+    <li>{{ item?.office?.name }}</li>
+    <li>
+      <button class="btn-details" (click)="navigateToDetails(item)">
+        Details
+      </button>
+      <button class="btn-edit" (click)="navigateToEdit(item)">Edit</button>
+      <button class="btn-delete" (click)="onDelete(item)">Delete</button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,48 @@
+{
+  "employees": [
+    {
+      "workerId": 1,
+      "name": "John",
+      "surname": "Smith",
+      "office": {
+        "name": "Beograd",
+        "id": "1"
+      },
+      "phones": [1234, 5678],
+      "id": "7fe9"
+    },
+    {
+      "workerId": 11,
+      "name": "Nick",
+      "surname": "Miller",
+      "office": {
+        "name": "Italy",
+        "id": "3"
+      },
+      "phones": [12314, 5628],
+      "id": "d790"
+    },
+    {
+      "workerId": 111,
+      "name": "Milan",
+      "surname": "Miletic",
+      "office": {
+        "name": "London",
+        "id": "2"
+      },
+      "phones": [123222, 5558],
+      "id": "cdaa"
+    },
+    {
+      "workerId": 1111,
+      "name": "Milante",
+      "surname": "Mileticte",
+      "office": {
+        "name": "London",
+        "id": "2"
+      },
+      "phones": [123222, 5558],
+      "id": "af1a"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.crea-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .btn-create {
+    background-color: rgb(19, 213, 19);
+    border: none;
+    padding: 7px 10px;
+    border-radius: 5px;
+    color: white;
+  }
+}
+
+.employees {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+  width: 100%;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    list-style-type: none;
+    width: 700px;
+
+    li {
+      width: 25%;
+      margin: 0px 30px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+  .employee {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    list-style-type: none;
+    width: 700px;
+
+    li {
+      width: 25%;
+      margin: 0px 10px;
+    }
+
+    .btn-edit {
+      background-color: rgb(10, 176, 232);
+      border: none;
+      padding: 3px 5px;
+      border-radius: 5px;
+      margin-right: 10px;
+      color: white;
+    }
+
+    .btn-details {
+      background-color: rgb(9, 118, 154);
+      border: none;
+      padding: 3px 5px;
+      border-radius: 5px;
+      margin-right: 10px;
+      color: white;
+    }
+
+    .btn-delete {
+      background-color: red;
+      border: none;
+      padding: 3px 5px;
+      border-radius: 5px;
+      color: white;
+    }
+  }
+}
+
+button {
+  cursor: pointer;
+}

@@ -6,23 +6,40 @@
   </button>
 </div>
 
-<div class="employees">
-  <div class="header">
-    <li>Name</li>
-    <li>Surname</li>
-    <li>Office</li>
-    <li>Actions</li>
+<div class="cotainer">
+  <div class="filter-container">
+    <h4>Filter Search</h4>
+    <div class="form-row">
+      <label for="name">Name</label>
+      <input id="name" type="text" [formControl]="nameSearch" />
+    </div>
+    <div class="form-row">
+      <label for="office">Office</label>
+      <input id="office" type="text" [formControl]="officeSearch" />
+    </div>
+    <div class="clear">
+      <button class="clear-btn" (click)="clearFilterSearch()">Clear All</button>
+    </div>
   </div>
-  <ul class="employee" *ngFor="let item of employees">
-    <li>{{ item?.name }}</li>
-    <li>{{ item?.surname }}</li>
-    <li>{{ item?.office?.name }}</li>
-    <li>
-      <button class="btn-details" (click)="navigateToDetails(item)">
-        Details
-      </button>
-      <button class="btn-edit" (click)="navigateToEdit(item)">Edit</button>
-      <button class="btn-delete" (click)="onDelete(item)">Delete</button>
-    </li>
-  </ul>
+
+  <div class="employees">
+    <div class="header">
+      <li>Name</li>
+      <li>Surname</li>
+      <li>Office</li>
+      <li>Actions</li>
+    </div>
+    <ul class="employee" *ngFor="let item of filteredEmployees">
+      <li>{{ item?.name }}</li>
+      <li>{{ item?.surname }}</li>
+      <li>{{ item?.office?.name }}</li>
+      <li>
+        <button class="btn-details" (click)="navigateToDetails(item)">
+          Details
+        </button>
+        <button class="btn-edit" (click)="navigateToEdit(item)">Edit</button>
+        <button class="btn-delete" (click)="onDelete(item)">Delete</button>
+      </li>
+    </ul>
+  </div>
 </div>

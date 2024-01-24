@@ -1,5 +1,6 @@
-<h1 *ngIf="!employeeId">Create Employee</h1>
-<h1 *ngIf="employeeId">Update Employee</h1>
+<h1 *ngIf="!employeeId && !isDetails">Create Employee</h1>
+<h1 *ngIf="employeeId && !isDetails">Update Employee</h1>
+<h1 *ngIf="isDetails">Details Employee</h1>
 <div class="employee-container">
   <form [formGroup]="employeeForm">
     <div class="form-row" *ngIf="employeeId">
@@ -26,18 +27,27 @@
     </div>
 
     <div formArrayName="phone" class="array">
-      <div class="btn-container">
-        <button [disabled]="isDetails" class="add-phone" (click)="addPhone()">
-          Add Phone
-        </button>
+      <div class="btn-container" *ngIf="!isDetails">
+        <button class="add-phone" (click)="addPhone()">Add Phone</button>
       </div>
       <div
         class="form-phone"
         *ngFor="let phone of phoneControls; let i = index"
       >
         <label for="phone">Phone {{ i + 1 }}</label>
-        <input class="phone" id="phone" type="text" [formControlName]="i" />
-        <button class="btn-delete" type="button" (click)="removePhone(i)">
+        <input
+          [readonly]="isDetails"
+          class="phone"
+          id="phone"
+          type="text"
+          [formControlName]="i"
+        />
+        <button
+          *ngIf="!isDetails"
+          class="btn-delete"
+          type="button"
+          (click)="removePhone(i)"
+        >
           Delete
         </button>
       </div>

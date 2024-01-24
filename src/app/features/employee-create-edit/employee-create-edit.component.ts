@@ -47,9 +47,7 @@ export class EmployeeCreateEditComponent implements OnInit {
   ngOnInit(): void {
     this.employeeId = this.route.snapshot.params['id'];
     let empDetails = this.route.snapshot.url[0].path;
-    console.log('this.route.snapshot:', this.route.snapshot.url[0].path);
     if (this.employeeId) {
-      console.log('this.employeeId:', this.employeeId);
       this.getEmployee();
       if (empDetails === 'details') {
         this.employeeForm.disable();
@@ -64,7 +62,6 @@ export class EmployeeCreateEditComponent implements OnInit {
   getOffices() {
     this.officeService.getOffices().subscribe((data: Office[]) => {
       this.employeeOffices = data;
-      console.log(data);
     });
   }
 
@@ -73,16 +70,18 @@ export class EmployeeCreateEditComponent implements OnInit {
       .getEmployee(this.employeeId)
       .subscribe((data: Employee) => {
         this.employee = data;
-        console.log('data:', data);
-
         this.employeeForm.get('id')?.setValue(this.employee.id);
         this.employeeForm.get('name')?.setValue(this.employee.name);
         this.employeeForm.get('surname')?.setValue(this.employee.surname);
         this.employeeForm.get('office')?.setValue(this.employee?.office?.id);
+
+        const phoneArray = this.employeeForm.get('phone') as FormArray;
+        data.phone.forEach((phone) => phoneArray.push(new FormControl(phone)));
       });
   }
 
   addPhone() {
+    // const control = new FormControl<null | string>(phone ?? null);
     const control = new FormControl(null);
     (<FormArray>this.employeeForm.get('phone')).push(control);
   }
@@ -96,6 +95,17 @@ export class EmployeeCreateEditComponent implements OnInit {
     let office = this.employeeOffices.find((o) => o.id === form.office);
 
     if (this.employeeId) {
+      let formValue: Employee = {
+        id: this.employeeId,
+        name: form.name,
+        surname: form.surname,
+        office: office!,
+        phone: form.phone,
+      };
+      this.employeeService.updateEmployee(formValue).subscribe((res: any) => {
+        this.employeeForm.reset();
+        this.success = true;
+      });
     } else {
       let formValue: Employee = {
         id: form.id,

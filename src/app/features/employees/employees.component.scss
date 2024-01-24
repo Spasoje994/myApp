@@ -18,66 +18,107 @@
     color: white;
   }
 }
-
-.employees {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 20px;
+.cotainer {
   width: 100%;
+  height: 100%;
+  display: flex;
 
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    list-style-type: none;
-    width: 700px;
+  .filter-container {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 20px;
 
-    li {
-      width: 25%;
-      margin: 0px 30px;
-      font-weight: bold;
-      font-size: 18px;
+    h4 {
+      text-align: center;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      margin: 10px 0px;
+
+      input {
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 30px;
+        margin: 10px 0px;
+      }
+    }
+    .clear {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .clear-btn {
+        border: 1px solid red;
+        border-radius: 10px;
+        height: 30px;
+        background-color: transparent;
+        color: red;
+      }
     }
   }
 
-  .employee {
+  .employees {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    list-style-type: none;
-    width: 700px;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    width: 100%;
 
-    li {
-      width: 25%;
-      margin: 0px 10px;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      list-style-type: none;
+      width: 700px;
+
+      li {
+        width: 25%;
+        margin: 0px 30px;
+        font-weight: bold;
+        font-size: 18px;
+      }
     }
 
-    .btn-edit {
-      background-color: rgb(10, 176, 232);
-      border: none;
-      padding: 3px 5px;
-      border-radius: 5px;
-      margin-right: 10px;
-      color: white;
-    }
+    .employee {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      list-style-type: none;
+      width: 700px;
 
-    .btn-details {
-      background-color: rgb(9, 118, 154);
-      border: none;
-      padding: 3px 5px;
-      border-radius: 5px;
-      margin-right: 10px;
-      color: white;
-    }
+      li {
+        width: 25%;
+        margin: 0px 10px;
+      }
 
-    .btn-delete {
-      background-color: red;
-      border: none;
-      padding: 3px 5px;
-      border-radius: 5px;
-      color: white;
+      .btn-edit {
+        background-color: rgb(10, 176, 232);
+        border: none;
+        padding: 3px 5px;
+        border-radius: 5px;
+        margin-right: 10px;
+        color: white;
+      }
+
+      .btn-details {
+        background-color: rgb(9, 118, 154);
+        border: none;
+        padding: 3px 5px;
+        border-radius: 5px;
+        margin-right: 10px;
+        color: white;
+      }
+
+      .btn-delete {
+        background-color: red;
+        border: none;
+        padding: 3px 5px;
+        border-radius: 5px;
+        color: white;
+      }
     }
   }
 }

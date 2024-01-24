@@ -1,29 +1,77 @@
 {
   "employees": [
     {
-      "id": "1",
-      "name": "John",
-      "surname": "Smith",
+      "id": "7b7b",
+      "name": "Marko",
+      "surname": "Markovic",
       "office": {
         "name": "Beograd",
-        "id": 1
+        "id": "1"
       },
-      "phones": [
-        1234,
-        5678
+      "phone": [
+        "123"
       ]
     },
     {
-      "id": "11",
-      "name": "Nick",
-      "surname": "Miller",
+      "id": "6a3a",
+      "name": "Test",
+      "surname": "Testic",
       "office": {
         "name": "Italy",
-        "id": 3
+        "id": "3"
       },
-      "phones": [
-        12314,
-        5628
+      "phone": [
+        "321",
+        "123"
+      ]
+    },
+    {
+      "id": "63b9",
+      "name": "Office",
+      "surname": "Testing2",
+      "office": {
+        "name": "London",
+        "id": "2"
+      },
+      "phone": [
+        "321"
+      ]
+    },
+    {
+      "id": "9133",
+      "name": "Bgd",
+      "surname": "Bgdic",
+      "office": {
+        "name": "Beograd",
+        "id": "1"
+      },
+      "phone": [
+        "123",
+        "321"
+      ]
+    },
+    {
+      "id": "a32b",
+      "name": "Testic",
+      "surname": "Test",
+      "office": {
+        "name": "Beograd",
+        "id": "1"
+      },
+      "phone": [
+        "12341243"
+      ]
+    },
+    {
+      "id": "7436",
+      "name": "Kaco",
+      "surname": "Cerovac",
+      "office": {
+        "name": "Italy",
+        "id": "3"
+      },
+      "phone": [
+        "666"
       ]
     }
   ],

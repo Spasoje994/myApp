@@ -73,6 +73,11 @@ h1 {
       padding: 7px 10px;
       border-radius: 5px;
       color: white;
+
+      &.btn-create:disabled {
+        background-color: rgb(136, 183, 136);
+        cursor: not-allowed;
+      }
     }
   }
 

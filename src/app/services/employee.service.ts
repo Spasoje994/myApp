@@ -32,10 +32,10 @@ export class EmployeeService {
   }
 
   addEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.apiUrl, employee, httpOptions);
+    return this.http.post<Employee>(this.apiUrl, employee);
   }
 
   updateEmployee(employee: Employee): Observable<Employee> {
-    return this.http.put<Employee>(this.apiUrl, employee, httpOptions);
+    return this.http.put<Employee>(this.apiUrl, employee);
   }
 }

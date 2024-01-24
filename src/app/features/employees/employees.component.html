@@ -9,14 +9,16 @@
 <div class="cotainer">
   <div class="filter-container">
     <h4>Filter Search</h4>
-    <div class="form-row">
-      <label for="name">Name</label>
-      <input id="name" type="text" [formControl]="nameSearch" />
-    </div>
-    <div class="form-row">
-      <label for="office">Office</label>
-      <input id="office" type="text" [formControl]="officeSearch" />
-    </div>
+    <form [formGroup]="searchForm">
+      <div class="form-row">
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+      <div class="form-row">
+        <label for="office">Office</label>
+        <input id="office" type="text" formControlName="office" />
+      </div>
+    </form>
     <div class="clear">
       <button class="clear-btn" (click)="clearFilterSearch()">Clear All</button>
     </div>

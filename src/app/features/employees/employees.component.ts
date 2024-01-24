@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Employee } from 'src/app/interface/employee';
@@ -14,12 +14,16 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   employees: Employee[] = [];
   filteredEmployees: Employee[] = [];
   private destroy$ = new Subject();
-  nameSearch = new FormControl('');
-  officeSearch = new FormControl('');
+
+  searchForm = this.fb.group({
+    name: new FormControl(''),
+    office: new FormControl(''),
+  });
 
   constructor(
     private employeeService: EmployeeService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -59,25 +63,13 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   }
 
   filterSearch() {
-    this.nameSearch.valueChanges.subscribe((name: any) => {
-      if (name.length >= 3) {
-        this.filteredEmployees = this.employees.filter((value: Employee) => {
-          return value.name
-            .toLocaleLowerCase()
-            .includes(name.toLocaleLowerCase());
-        });
-      } else {
-        this.filteredEmployees = this.employees;
-      }
-    });
-
-    this.officeSearch.valueChanges.subscribe((office: any) => {
-      if (office.length >= 3) {
-        console.log('office:', office);
-        this.filteredEmployees = this.employees.filter((value: Employee) => {
-          return value.office.name
-            .toLocaleLowerCase()
-            .includes(office.toLocaleLowerCase());
+    this.searchForm.valueChanges.subscribe((value: any) => {
+      if (value.name.length >= 3 || value.office.length >= 3) {
+        this.filteredEmployees = this.employees.filter((emp: Employee) => {
+          return (
+            emp.name.toLowerCase().includes(value.name) &&
+            emp.office.name.toLocaleLowerCase().includes(value.office)
+          );
         });
       } else {
         this.filteredEmployees = this.employees;
@@ -86,8 +78,8 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   }
 
   clearFilterSearch() {
-    this.nameSearch.setValue('');
-    this.officeSearch.setValue('');
+    this.searchForm.reset();
+    this.filteredEmployees = this.employees;
   }
 
   ngOnDestroy(): void {

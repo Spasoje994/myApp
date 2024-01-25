@@ -114,8 +114,8 @@ export class EmployeeCreateEditComponent implements OnInit {
       });
     } else {
       let formValue: Employee = {
-        // id: toString(this.randomId), u string
-        id: this.randomId,
+        // id: this.randomId.toString() ,
+        id: form.id,
         name: form.name,
         surname: form.surname,
         office: office!,

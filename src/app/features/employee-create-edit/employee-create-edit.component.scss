@@ -25,11 +25,24 @@ h1 {
       margin: 10px 0px;
     }
 
+    input.ng-touched.ng-dirty.ng-invalid {
+      outline: 1px solid red;
+      border: none;
+      border-radius: 10px;
+      height: 30px;
+      margin: 10px 0px;
+    }
+
     select {
       border: none;
       border-radius: 10px;
       height: 30px;
       margin: 10px 0px;
+    }
+
+    span {
+      color: red;
+      font-size: 12px;
     }
   }
 

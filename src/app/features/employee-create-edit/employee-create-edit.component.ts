@@ -4,12 +4,14 @@ import {
   Validators,
   FormArray,
   FormControl,
+  AbstractControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/interface/employee';
 import { Office } from 'src/app/interface/office';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { OfficeService } from 'src/app/services/office.service';
+import { officePhonesValidator } from 'src/app/utils/office-phone-validator';
 
 @Component({
   selector: 'app-employee-create-edit',
@@ -24,13 +26,16 @@ export class EmployeeCreateEditComponent implements OnInit {
   success = false;
   isDetails = false;
 
-  employeeForm = this.fb.group({
-    id: [{ value: this.randomId, disabled: true }],
-    name: ['', Validators.required],
-    surname: ['', Validators.required],
-    phone: new FormArray([]),
-    office: [0],
-  });
+  employeeForm = this.fb.group(
+    {
+      id: [{ value: this.randomId, disabled: true }],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      phone: new FormArray([]),
+      office: [0],
+    },
+    { validators: [officePhonesValidator()] }
+  );
 
   get phoneControls() {
     return (<FormArray>this.employeeForm.get('phone')).controls;
@@ -45,6 +50,7 @@ export class EmployeeCreateEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // this.employeeForm.get('office')?.setValue(null);
     this.employeeId = this.route.snapshot.params['id'];
     let empDetails = this.route.snapshot.url[0].path;
     if (this.employeeId) {
@@ -82,7 +88,7 @@ export class EmployeeCreateEditComponent implements OnInit {
 
   addPhone() {
     // const control = new FormControl<null | string>(phone ?? null);
-    const control = new FormControl(null);
+    const control = new FormControl(null, Validators.required);
     (<FormArray>this.employeeForm.get('phone')).push(control);
   }
 
@@ -91,6 +97,7 @@ export class EmployeeCreateEditComponent implements OnInit {
   }
 
   onSubmit(form: any) {
+    console.log('form:', form);
     this.success = false;
     let office = this.employeeOffices.find((o) => o.id === form.office);
 
@@ -102,19 +109,20 @@ export class EmployeeCreateEditComponent implements OnInit {
         office: office!,
         phone: form.phone,
       };
-      this.employeeService.updateEmployee(formValue).subscribe((res: any) => {
-        this.employeeForm.reset();
+      this.employeeService.updateEmployee(formValue).subscribe(() => {
         this.success = true;
       });
     } else {
       let formValue: Employee = {
-        id: form.id,
+        // id: toString(this.randomId), u string
+        id: this.randomId,
         name: form.name,
         surname: form.surname,
         office: office!,
         phone: form.phone,
       };
-      this.employeeService.addEmployee(formValue).subscribe((res: any) => {
+      console.log('formValue:', formValue);
+      this.employeeService.addEmployee(formValue).subscribe(() => {
         this.employeeForm.reset();
         this.success = true;
       });

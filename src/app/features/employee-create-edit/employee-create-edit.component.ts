@@ -4,7 +4,6 @@ import {
   Validators,
   FormArray,
   FormControl,
-  AbstractControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/interface/employee';
@@ -50,7 +49,6 @@ export class EmployeeCreateEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.employeeForm.get('office')?.setValue(null);
     this.employeeId = this.route.snapshot.params['id'];
     let empDetails = this.route.snapshot.url[0].path;
     if (this.employeeId) {
@@ -87,7 +85,6 @@ export class EmployeeCreateEditComponent implements OnInit {
   }
 
   addPhone() {
-    // const control = new FormControl<null | string>(phone ?? null);
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.employeeForm.get('phone')).push(control);
   }
@@ -114,7 +111,6 @@ export class EmployeeCreateEditComponent implements OnInit {
       });
     } else {
       let formValue: Employee = {
-        // id: this.randomId.toString() ,
         id: form.id,
         name: form.name,
         surname: form.surname,

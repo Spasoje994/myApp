@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { Employee } from 'src/app/interface/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
@@ -30,12 +30,8 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     this.getEmployees();
     // this.filterSearch();
     this.searchForm.valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged(),
-        filter((values: any) => values.name.length || values.office.length)
-      )
-      .subscribe((filteredValues: Employee) => {
+      .pipe(takeUntil(this.destroy$), debounceTime(300), distinctUntilChanged())
+      .subscribe((filteredValues: any) => {
         this.filterSearch(filteredValues);
       });
   }
@@ -63,7 +59,6 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   }
 
   onDelete(employee: Employee) {
-    console.log('employee:', employee.id);
     this.employeeService.deleteEmployee(employee).subscribe(() => {
       this.filteredEmployees = this.filteredEmployees.filter(
         (e: Employee) => e.id !== employee.id
@@ -90,8 +85,12 @@ export class EmployeesComponent implements OnInit, OnDestroy {
     if (filterValue.name.length >= 3 || filterValue.office.length >= 3) {
       this.filteredEmployees = this.employees.filter((employee: Employee) => {
         return (
-          employee.name.toLowerCase().includes(filterValue.name) &&
-          employee.office.name.toLowerCase().includes(filterValue.office)
+          employee.name
+            .toLowerCase()
+            .includes(filterValue.name.toLowerCase()) &&
+          employee.office.name
+            .toLowerCase()
+            .includes(filterValue.office.toLowerCase())
         );
       });
     } else if (filterValue.name.length < 3 || filterValue.office.length < 3) {
